@@ -14,7 +14,7 @@ class ProductDetailScreen extends StatefulWidget {
 
 int indexx = 0;
 int indexxx = 0;
-List size = [40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51];
+List option = ['옵션1', '옵션2', '옵션3', '옵션4'];
 
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
   @override
@@ -218,7 +218,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     ),
                     SizedBox(height: 25),
                     Text(
-                      'Select Size',
+                      '디자인',
                       style: TextStyle(
                         fontSize: 18,
                         color: Colors.black,
@@ -229,7 +229,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     Container(
                       height: 35,
                       child: ListView.builder(
-                        itemCount: 12,
+                        itemCount: 4,
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
                           return Padding(
@@ -242,7 +242,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                               },
                               child: Container(
                                 alignment: Alignment.center,
-                                width: 35,
+                                width: 100,
                                 height: 35,
                                 decoration: BoxDecoration(
                                   border: Border.all(
@@ -253,7 +253,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 child: Text(
-                                  '${size[index]}',
+                                  '${option[index]}',
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: Colors.black,
@@ -268,7 +268,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     ),
                     SizedBox(height: 20),
                     Text(
-                      'Explain',
+                      '상세정보',
                       style: TextStyle(
                         fontSize: 18,
                         color: Colors.black,
@@ -279,7 +279,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 20),
                       child: Text(
-                        "Get in the Queue. Get the goods.Create or sign in to your free Nike Member account for a chance to buy this product the moment it's releasedThe Air Jordan 1 Mid brings full-court style and premium comfort to an iconic look. Its Air-Sole unit cushions play on the hardwood, while the padded collar gives you a supportive feel.Inspired by the original AJ1, this mid-top edition maintains the iconic look you love while choice colours and crisp leather give it a distinct identity.Inspired by the original AJ1, this mid-top edition maintains the iconic look you love while choice colours and crisp leather give it a distinct identity.Inspired by the original AJ1, this mid-top edition maintains the iconic look you love while choice colours and crisp leather give it a distinct identity.Inspired by the original AJ1, this mid-top edition maintains the iconic look you love while choice colours and crisp leather give it a distinct identity.Inspired by the original AJ1, this mid-top edition maintains the iconic look you love while choice colours and crisp leather give it a distinct identity",
+                        "이쁜 뚱랑이예요",
                         style: TextStyle(
                           fontSize: 16,
                           color: Colors.grey.shade600,
