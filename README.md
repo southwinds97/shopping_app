@@ -54,6 +54,6 @@
 
 ## 참고 자료
 
-- [Flutter-Shopping-App]:https://github.com/alireza4585/Flutter-Shopping-App
+- [Flutter-Shopping-App] :https://github.com/alireza4585/Flutter-Shopping-App
 
 
