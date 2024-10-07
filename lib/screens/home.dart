@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shopping_app/constans/colors.dart';
 import 'package:shopping_app/data/banner.dart';
 import 'package:shopping_app/data/banner_model.dart';
+import 'package:shopping_app/screens/product_detail_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Home extends StatefulWidget {
@@ -29,71 +30,83 @@ class _HomeState extends State<Home> {
               sliver: SliverGrid(
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
-                    return Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Colors.white,
-                      ),
-                      child: Stack(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 110),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: Image.asset(
-                                'assets/images/new${index + 1}.jpg',
-                                height: 200,
-                                width: 190,
-                                fit: BoxFit.cover,
-                              ),
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                ProductDetailScreen(
+                              index: index,
                             ),
                           ),
-                          Positioned(
-                            top: 165,
-                            left: 10,
-                            child: Text(
-                              banners()[index].name!,
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
+                        );
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: Colors.white,
+                        ),
+                        child: Stack(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 110),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: Image.asset(
+                                  'assets/images/${index + 1}.jpg',
+                                  height: 200,
+                                  width: 190,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
-                          ),
-                          Positioned(
-                            top: 210,
-                            left: 0,
-                            right: 0,
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 15),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    '\₩ ' + banners()[index].price!,
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                        color: mains.withOpacity(0.7)),
-                                  ),
-                                  Container(
-                                    child: Icon(
-                                      Icons.shopping_cart_outlined,
-                                      color: Colors.white,
-                                    ),
-                                    width: 40,
-                                    height: 40,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(11),
-                                      color: mains.withOpacity(0.7),
-                                    ),
-                                  ),
-                                ],
+                            Positioned(
+                              top: 165,
+                              left: 10,
+                              child: Text(
+                                banners()[index].name!,
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
-                          )
-                        ],
+                            Positioned(
+                              top: 210,
+                              left: 0,
+                              right: 0,
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 15),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      '\₩ ' + banners()[index].price!,
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          color: mains.withOpacity(0.7)),
+                                    ),
+                                    Container(
+                                      child: Icon(
+                                        Icons.shopping_cart_outlined,
+                                        color: Colors.white,
+                                      ),
+                                      width: 40,
+                                      height: 40,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(11),
+                                        color: mains.withOpacity(0.7),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     );
                   },
@@ -314,7 +327,7 @@ class _HomeState extends State<Home> {
             SizedBox(width: 10),
             // 상단 ui 타이틀
             Container(
-              width: 280,
+              width: 240,
               height: 40,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),

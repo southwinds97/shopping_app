@@ -16,6 +16,7 @@ class _NaviState extends State<Navi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: backgroundColor,
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         child: Icon(
