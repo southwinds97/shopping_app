@@ -2,20 +2,20 @@ import 'package:shopping_app/data/banner.dart';
 
 List<banner> banners() {
   banner one = banner();
-  one.image = '1.webp';
+  one.image = 'new1.jpg';
   one.name = '구직타이거1';
-  one.price = '₩ 6,000';
+  one.price = '6000';
   banner two = banner();
-  two.image = '2.webp';
+  two.image = 'new2.jpg';
   two.name = '구직타이거2';
-  two.price = '₩ 5,000';
+  two.price = '5000';
   banner three = banner();
-  three.image = '3.webp';
+  three.image = 'new3.jpg';
   three.name = '구직타이거3';
-  three.price = '₩ 4,000';
+  three.price = '4000';
   banner four = banner();
-  four.image = '4.webp';
+  four.image = 'new4.jpg';
   four.name = '구직타이거4';
-  four.price = '₩ 3,000';
+  four.price = '3000';
   return [one, two, three, four];
 }

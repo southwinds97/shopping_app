@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/constans/colors.dart';
+import 'package:shopping_app/constans/navigation.dart';
 import 'package:shopping_app/screens/home.dart';
 
 void main() {
@@ -12,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Home(),
+      home: Navi(),
     );
   }
 }
