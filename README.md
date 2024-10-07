@@ -33,8 +33,6 @@
 
 ```
 /lib
-
-
     /auth
          - auth.dart
     /constants
