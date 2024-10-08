@@ -52,11 +52,12 @@ class _LoginPageState extends State<LoginPage> {
     );
 
     if (response.statusCode == 200) {
+      final decodedResponse = json.decode(utf8.decode(response.bodyBytes));
       // 로그인 성공 처리
       SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setBool('isLoggedIn', true);
       await prefs.setString('memberId', id.text);
-      await prefs.setString('memberName', json.decode(response.body)['name']);
+      await prefs.setString('memberName', decodedResponse['name']);
 
       Navigator.pushReplacement(
         context,

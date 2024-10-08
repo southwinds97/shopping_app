@@ -1,9 +1,11 @@
+import 'dart:convert';
+import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:shopping_app/constants/colors.dart';
-import 'package:shopping_app/data/banner.dart';
-import 'package:shopping_app/data/banner_model.dart';
 import 'package:shopping_app/screens/product_detail_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:shopping_app/data/product.dart'; // ProductDTO 클래스 임포트
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -15,6 +17,29 @@ class Home extends StatefulWidget {
 final _control = PageController();
 
 class _HomeState extends State<Home> {
+  List<ProductDTO> products = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchProducts();
+  }
+
+  Future<void> fetchProducts() async {
+    final response = await http.get(Uri.parse('http://192.168.0.33:8586/api/'));
+
+    if (response.statusCode == 200) {
+      final decodedResponse = json.decode(utf8.decode(response.bodyBytes));
+      List<dynamic> productJson = decodedResponse;
+      setState(() {
+        products =
+            productJson.map((json) => ProductDTO.fromJson(json)).toList();
+      });
+    } else {
+      throw Exception('Failed to load products');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,13 +55,14 @@ class _HomeState extends State<Home> {
               sliver: SliverGrid(
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
+                    final product = products[index];
                     return GestureDetector(
                       onTap: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (BuildContext context) =>
                                 ProductDetailScreen(
-                              index: index,
+                              product: product,
                             ),
                           ),
                         );
@@ -53,7 +79,7 @@ class _HomeState extends State<Home> {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(10),
                                 child: Image.asset(
-                                  'assets/images/${index + 1}.jpg',
+                                  'assets/images/productList/${product.imgId}',
                                   height: 200,
                                   width: 190,
                                   fit: BoxFit.cover,
@@ -64,11 +90,18 @@ class _HomeState extends State<Home> {
                               top: 165,
                               left: 10,
                               child: Text(
-                                banners()[index].name!,
+                                // 글자가 길면 ...으로 처리
+                                product.productName != null &&
+                                        product.productName!.length > 10
+                                    ? product.productName!.substring(0, 10) +
+                                        '...'
+                                    : product.productName ?? '',
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
                                 ),
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
                               ),
                             ),
                             Positioned(
@@ -83,7 +116,7 @@ class _HomeState extends State<Home> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      '\₩ ' + banners()[index].price!,
+                                      '\₩ ' + (product.price ?? ''),
                                       style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
@@ -110,7 +143,7 @@ class _HomeState extends State<Home> {
                       ),
                     );
                   },
-                  childCount: 4,
+                  childCount: min(products.length, 30),
                 ),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
@@ -207,15 +240,24 @@ class _HomeState extends State<Home> {
               ),
               SizedBox(height: 4),
               Text(
-                banners()[count].name!,
+                products.isNotEmpty
+                    ? (products[count].productName != null &&
+                            products[count].productName!.length > 10
+                        ? products[count].productName!.substring(0, 10) + '...'
+                        : products[count].productName ?? '')
+                    : '',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
                 ),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
               ),
               SizedBox(height: 4),
               Text(
-                '\₩ ' + banners()[count].price!,
+                products.isNotEmpty
+                    ? '\₩ ' + (products[count].price ?? '')
+                    : '',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
@@ -244,12 +286,14 @@ class _HomeState extends State<Home> {
         ),
         ClipRRect(
           borderRadius: BorderRadius.circular(10),
-          child: Image.asset(
-            'assets/images/${banners()[count].image!}',
-            height: 220,
-            width: 220,
-            fit: BoxFit.cover,
-          ),
+          child: products.isNotEmpty
+              ? Image.asset(
+                  'assets/images/productList/${products[count].imgId}',
+                  height: 180,
+                  width: 180,
+                  fit: BoxFit.cover,
+                )
+              : Container(),
         ),
       ],
     );

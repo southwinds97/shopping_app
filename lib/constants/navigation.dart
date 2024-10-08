@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/auth/main_auth.dart';
 import 'package:shopping_app/constants/colors.dart';
 import 'package:shopping_app/screens/home.dart';
+import 'package:shopping_app/screens/profil.dart';
 
 class Navi extends StatefulWidget {
   const Navi({super.key});
@@ -10,7 +12,7 @@ class Navi extends StatefulWidget {
 }
 
 int index = 0;
-List screens = [Home(), Home(), Home(), Home()];
+List screens = [Home(), Home(), Home(), MainAuth()];
 
 class _NaviState extends State<Navi> {
   @override

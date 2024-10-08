@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/colors.dart';
 import 'package:shopping_app/constants/navigation.dart';
-import 'package:shopping_app/data/banner_model.dart';
+import 'package:shopping_app/data/product.dart'; // ProductDTO 클래스 임포트
 import 'package:shopping_app/screens/home.dart';
 
 class ProductDetailScreen extends StatefulWidget {
-  int index;
-  ProductDetailScreen({super.key, required this.index});
+  final ProductDTO product;
+  ProductDetailScreen({super.key, required this.product});
 
   @override
   State<ProductDetailScreen> createState() => _ProductDetailScreenState();
 }
 
-int indexx = 0;
-int indexxx = 0;
-List option = ['옵션1', '옵션2', '옵션3', '옵션4'];
-
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
+  int indexx = 0;
+  int indexxx = 0;
+  List<String> option = ['옵션1', '옵션2', '옵션3', '옵션4'];
+
   @override
   Widget build(BuildContext context) {
-    List get_images = [
-      banners()[widget.index].image!,
-      banners()[widget.index].image1!,
-      banners()[widget.index].image2!,
-      banners()[widget.index].image3!,
+    List<String> get_images = [
+      if (widget.product.imgId != null) widget.product.imgId!,
+      if (widget.product.imgId != null) widget.product.imgId!,
+      if (widget.product.imgId != null) widget.product.imgId!,
+      if (widget.product.imgId != null) widget.product.imgId!,
     ];
 
     return Scaffold(
@@ -33,36 +33,41 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              '\₩ ' + banners()[widget.index].price!,
+              '\₩ ' + (widget.product.price ?? ''),
               style: TextStyle(
                 color: mains,
                 fontSize: 19,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            Container(
-              width: 190,
-              height: 50,
-              decoration: BoxDecoration(
-                color: mains,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Icon(
-                    Icons.shopping_cart_outlined,
-                    color: Colors.white,
-                  ),
-                  Text(
-                    'Add To Cart',
-                    style: TextStyle(
+            GestureDetector(
+              onTap: () {
+                // Add to cart 기능 추가
+              },
+              child: Container(
+                width: 190,
+                height: 50,
+                decoration: BoxDecoration(
+                  color: mains,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Icon(
+                      Icons.shopping_cart_outlined,
                       color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15,
                     ),
-                  ),
-                ],
+                    Text(
+                      'Add To Cart',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
@@ -75,7 +80,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
             SliverAppBar(
               flexibleSpace: FlexibleSpaceBar(
                 background: Image.asset(
-                  'assets/images/${get_images[indexx]}',
+                  'assets/images/productList/${get_images[indexx]}',
                   fit: BoxFit.cover,
                 ),
               ),
@@ -99,7 +104,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         height: 4,
                         width: 100,
                         decoration: BoxDecoration(
-                          color: Colors.black,
+                          color: mains,
                           borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(70),
                             topRight: Radius.circular(70),
@@ -153,7 +158,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   children: [
                     SizedBox(height: 20),
                     Text(
-                      banners()[index].name!,
+                      widget.product.productName ?? '',
                       style: TextStyle(
                         fontSize: 24,
                         color: Colors.black,
@@ -182,7 +187,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     Container(
                       height: 70,
                       child: ListView.builder(
-                        itemCount: 4,
+                        itemCount: get_images.length,
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
                           return Padding(
@@ -205,7 +210,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                   borderRadius: BorderRadius.circular(10),
                                   image: DecorationImage(
                                     image: AssetImage(
-                                      'assets/images/${get_images[index]}',
+                                      'assets/images/productList/${get_images[index]}',
                                     ),
                                     fit: BoxFit.cover,
                                   ),
@@ -229,7 +234,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     Container(
                       height: 35,
                       child: ListView.builder(
-                        itemCount: 4,
+                        itemCount: option.length,
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
                           return Padding(
@@ -279,7 +284,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 20),
                       child: Text(
-                        "이쁜 뚱랑이예요",
+                        widget.product.productContent ?? '상세 정보가 없습니다.',
                         style: TextStyle(
                           fontSize: 16,
                           color: Colors.grey.shade600,

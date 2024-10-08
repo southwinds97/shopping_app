@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shopping_app/constants/navigation.dart';
 import 'package:shopping_app/screens/login_page.dart';
+import 'package:shopping_app/screens/profil.dart';
 
 class MainAuth extends StatefulWidget {
   @override
@@ -32,7 +33,7 @@ class _MainAuthState extends State<MainAuth> {
             body: Center(child: Text('Error: ${snapshot.error}')),
           );
         } else if (snapshot.hasData && snapshot.data == true) {
-          return Navi();
+          return ProFil();
         } else {
           return LoginPage(show: showLoginPage);
         }
