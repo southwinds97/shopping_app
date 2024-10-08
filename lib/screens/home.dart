@@ -143,7 +143,7 @@ class _HomeState extends State<Home> {
                       ),
                     );
                   },
-                  childCount: min(products.length, 30),
+                  childCount: min(products.length, 50),
                 ),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,

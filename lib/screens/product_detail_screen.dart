@@ -59,7 +59,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       color: Colors.white,
                     ),
                     Text(
-                      'Add To Cart',
+                      '상품 추가',
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
