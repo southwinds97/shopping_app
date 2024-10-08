@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_app/constans/colors.dart';
+import 'package:shopping_app/constants/colors.dart';
 import 'package:shopping_app/screens/home.dart';
 
 class Navi extends StatefulWidget {

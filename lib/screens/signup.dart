@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_app/constans/colors.dart';
+import 'package:shopping_app/constants/colors.dart';
 
 class Signup extends StatefulWidget {
   final VoidCallback show;

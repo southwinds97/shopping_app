@@ -1,5 +1,10 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:shopping_app/constans/colors.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shopping_app/constants/colors.dart';
+import 'package:shopping_app/constants/navigation.dart';
+import 'package:shopping_app/screens/home.dart';
 
 class LoginPage extends StatefulWidget {
   final VoidCallback show;
@@ -15,9 +20,9 @@ class _LoginPageState extends State<LoginPage> {
   final id = TextEditingController();
   final password = TextEditingController();
   bool vissible = false;
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _focusNode1.addListener(() {
       setState(() {});
@@ -29,10 +34,54 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _focusNode1.dispose();
     _focusNode2.dispose();
+  }
+
+  Future<void> loginUser() async {
+    final response = await http.post(
+      Uri.parse('http://192.168.0.33:8586/api/login'), // Spring Boot 서버 URL
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'id': id.text,
+        'pass': password.text,
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      // 로그인 성공 처리
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setBool('isLoggedIn', true);
+      await prefs.setString('memberId', id.text);
+      await prefs.setString('memberName', json.decode(response.body)['name']);
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => Navi()),
+      );
+    } else {
+      // 로그인 실패 처리
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text('로그인 실패'),
+            content: Text('ID 또는 비밀번호가 잘못되었습니다.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('확인'),
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 
   @override
@@ -92,20 +141,23 @@ class _LoginPageState extends State<LoginPage> {
   Padding signIN() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
-      child: Container(
-        alignment: Alignment.center,
-        width: double.infinity,
-        height: 50,
-        decoration: BoxDecoration(
-          color: mains,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Text(
-          "로그인",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 23,
-            fontWeight: FontWeight.bold,
+      child: GestureDetector(
+        onTap: loginUser, // 로그인 버튼 클릭 시 loginUser 함수 호출
+        child: Container(
+          alignment: Alignment.center,
+          width: double.infinity,
+          height: 50,
+          decoration: BoxDecoration(
+            color: mains,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Text(
+            "로그인",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 23,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
       ),
