@@ -22,6 +22,7 @@ class _NaviState extends State<Navi> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgroundColor,
+      resizeToAvoidBottomInset: false,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).push(

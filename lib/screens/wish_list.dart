@@ -22,6 +22,21 @@ class _WishListState extends State<WishList> {
       imgId: '9ddad377f3339aa872374c0f2e981fbf.jpg',
       productContent: '무직타이거 상품',
     ),
+    ProductDTO(
+      productName: '자이언트-뚱랑이-쿠션-3종',
+      imgId: 'shop1_5817327f8fc73658b5f755ade0117e5e.jpg',
+      productContent: '무직타이거 상품',
+    ),
+    ProductDTO(
+      productName: '뚱랑이-폰스트랩',
+      imgId: 'shop1_83f8abcd5a908f2072c34557b277c96b.jpg',
+      productContent: '무직타이거 상품',
+    ),
+    ProductDTO(
+      productName: '파티-타이거-에어팟프로-케이스',
+      imgId: 'shop1_a7df4da3ebc7a2386e78055a43959e56.jpg',
+      productContent: '무직타이거 상품',
+    ),
   ];
 
   @override
@@ -101,7 +116,7 @@ class _WishListState extends State<WishList> {
         ),
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+        padding: const EdgeInsets.only(right: 16, bottom: 30),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
@@ -110,7 +125,7 @@ class _WishListState extends State<WishList> {
                 // 결제 기능 추가
               },
               child: Container(
-                width: 190,
+                width: 150,
                 height: 50,
                 decoration: BoxDecoration(
                   color: mains,
@@ -124,7 +139,7 @@ class _WishListState extends State<WishList> {
                       color: Colors.white,
                     ),
                     Text(
-                      '장바구니 담기',
+                      '장바구니',
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,

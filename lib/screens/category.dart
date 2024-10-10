@@ -54,7 +54,7 @@ class _CategoryState extends State<Category> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          '관심상품',
+          '카테고리',
           style: TextStyle(
             color: Colors.white,
             fontSize: 20,

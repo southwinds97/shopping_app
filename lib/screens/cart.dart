@@ -27,6 +27,20 @@ class _CartState extends State<Cart> {
       productContent: '무직타이거 상품',
       quantity: 1,
     ),
+    ProductDTO(
+      productName: '뚱랑이의-하루-랜덤-피규어',
+      price: '8000',
+      imgId: 'shop1_d81f41f535d80e6e019b6c1237290019.jpg',
+      productContent: '무직타이거 상품',
+      quantity: 1,
+    ),
+    ProductDTO(
+      productName: '뚱랑이-플랫-파우치-라지',
+      price: '32000',
+      imgId: 'shop1_7962759313083b74bc4757fcbb21cae3.jpg',
+      productContent: '무직타이거 상품',
+      quantity: 1,
+    ),
   ];
 
   final NumberFormat currencyFormat = NumberFormat('#,##0', 'ko_KR');
@@ -164,7 +178,7 @@ class _CartState extends State<Cart> {
                 // 결제 기능 추가
               },
               child: Container(
-                width: 190,
+                width: 150,
                 height: 50,
                 decoration: BoxDecoration(
                   color: mains,
