@@ -48,7 +48,7 @@ class _HomeState extends State<Home> {
         child: CustomScrollView(
           slivers: [
             Appbar(),
-            SearchBox(),
+            // SearchBox(),
             bannerr(),
             SliverPadding(
               padding: EdgeInsets.symmetric(horizontal: 15, vertical: 25),
@@ -232,10 +232,11 @@ class _HomeState extends State<Home> {
             children: [
               SizedBox(height: 20),
               Text(
-                'New Release',
+                '새 상품 안내',
                 style: TextStyle(
                   color: mains,
                   fontSize: 16,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
               SizedBox(height: 4),
@@ -273,7 +274,7 @@ class _HomeState extends State<Home> {
                   color: mains,
                 ),
                 child: Text(
-                  'buy now',
+                  '상품 추가',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 16,

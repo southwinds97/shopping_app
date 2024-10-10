@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/auth/main_auth.dart';
 import 'package:shopping_app/constants/colors.dart';
+import 'package:shopping_app/screens/cart.dart';
+import 'package:shopping_app/screens/category.dart';
 import 'package:shopping_app/screens/home.dart';
 import 'package:shopping_app/screens/profil.dart';
+import 'package:shopping_app/screens/wish_list.dart';
 
 class Navi extends StatefulWidget {
   const Navi({super.key});
@@ -12,7 +15,7 @@ class Navi extends StatefulWidget {
 }
 
 int index = 0;
-List screens = [Home(), Home(), Home(), MainAuth()];
+List screens = [Home(), Category(), WishList(), MainAuth()];
 
 class _NaviState extends State<Navi> {
   @override
@@ -20,7 +23,13 @@ class _NaviState extends State<Navi> {
     return Scaffold(
       backgroundColor: backgroundColor,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => Cart(),
+            ),
+          );
+        },
         child: Icon(
           Icons.shopping_cart_outlined,
           color: Colors.white,
