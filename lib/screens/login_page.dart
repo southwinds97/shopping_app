@@ -8,7 +8,7 @@ import 'package:shopping_app/screens/home.dart';
 
 class LoginPage extends StatefulWidget {
   final VoidCallback show;
-  const LoginPage({super.key, required this.show});
+  const LoginPage({Key? key, required this.show}) : super(key: key);
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -19,7 +19,7 @@ class _LoginPageState extends State<LoginPage> {
   FocusNode _focusNode2 = FocusNode();
   final id = TextEditingController();
   final password = TextEditingController();
-  bool vissible = false;
+  bool vissible = true;
 
   @override
   void initState() {
@@ -107,6 +107,7 @@ class _LoginPageState extends State<LoginPage> {
             WithKakao(),
             SizedBox(height: 15),
             WithNaver(),
+            SizedBox(height: 50),
           ],
         ),
       ),
@@ -334,7 +335,7 @@ class _LoginPageState extends State<LoginPage> {
               suffixIcon: GestureDetector(
                   onTap: () {
                     setState(() {
-                      vissible = !vissible;
+                      vissible = vissible;
                     });
                   },
                   child: Icon(

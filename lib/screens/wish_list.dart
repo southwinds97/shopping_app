@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/colors.dart';
-import 'package:shopping_app/data/product.dart'; // ProductDTO 클래스 임포트
+import 'package:shopping_app/data/productDTO.dart'; // ProductDTO 클래스 임포트
 
 class WishList extends StatefulWidget {
   const WishList({super.key});
@@ -57,7 +57,7 @@ class _WishListState extends State<WishList> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(20.0),
         child: ListView.builder(
           itemCount: cartProducts.length,
           itemBuilder: (context, index) {
@@ -113,44 +113,6 @@ class _WishListState extends State<WishList> {
               ),
             );
           },
-        ),
-      ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(right: 16, bottom: 30),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            GestureDetector(
-              onTap: () {
-                // 결제 기능 추가
-              },
-              child: Container(
-                width: 150,
-                height: 50,
-                decoration: BoxDecoration(
-                  color: mains,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Icon(
-                      Icons.shopping_bag_outlined,
-                      color: Colors.white,
-                    ),
-                    Text(
-                      '장바구니',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
         ),
       ),
     );

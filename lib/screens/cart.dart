@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/colors.dart';
-import 'package:shopping_app/data/product.dart'; // ProductDTO 클래스 임포트
+import 'package:shopping_app/data/productDTO.dart'; // ProductDTO 클래스 임포트
 import 'package:intl/intl.dart'; // intl 패키지 임포트
 
 class Cart extends StatefulWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/constants/colors.dart';
 import 'package:shopping_app/constants/navigation.dart';
-import 'package:shopping_app/data/product.dart'; // ProductDTO 클래스 임포트
+import 'package:shopping_app/data/productDTO.dart'; // ProductDTO 클래스 임포트
 import 'package:shopping_app/screens/home.dart';
 
 class ProductDetailScreen extends StatefulWidget {

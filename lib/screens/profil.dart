@@ -42,72 +42,65 @@ class _ProFilState extends State<ProFil> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Column(
-          children: [
-            logo(),
-            SizedBox(height: 0),
-            info(),
-            SizedBox(height: 15),
-            LogOut(),
-            SizedBox(height: 10),
-            or(),
-            SizedBox(height: 10),
-            SignEdit(),
-            SizedBox(height: 10),
-            SignDelete(),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Row or() {
-    return Row(
-      children: [
-        Expanded(
-            child: Divider(
-          thickness: 1.5,
-          endIndent: 4,
-          indent: 20,
-        )),
-        Text(
-          "OR",
-          style: TextStyle(
-            color: Colors.grey[600],
-            fontSize: 14,
-          ),
-        ),
-        Expanded(
-            child: Divider(
-          thickness: 1.5,
-          endIndent: 20,
-          indent: 4,
-        )),
-      ],
-    );
-  }
-
-  Padding LogOut() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
-      child: GestureDetector(
-        onTap: _logout,
-        child: Container(
-          alignment: Alignment.center,
-          width: double.infinity,
-          height: 50,
-          decoration: BoxDecoration(
-            color: mains,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Text(
-            "로그아웃",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 23,
-              fontWeight: FontWeight.bold,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.only(top: 50),
+          child: Container(
+            padding: EdgeInsets.all(20),
+            child: Column(
+              children: [
+                SizedBox(
+                  width: 120,
+                  height: 120,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(100),
+                    child: Image(
+                      image: AssetImage('assets/images/profil.jpg'),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  '$memberName',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  '$memberId',
+                  style: TextStyle(
+                    color: Colors.grey[600],
+                    fontSize: 16,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: const Text('프로필 수정'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: mains,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                const Divider(),
+                const SizedBox(height: 10),
+                Settings(),
+                OrderList(),
+                Inquiryhistory(),
+                const SizedBox(height: 10),
+                const Divider(),
+                const SizedBox(height: 10),
+                Info(),
+                LogOut(),
+                const SizedBox(height: 30),
+              ],
             ),
           ),
         ),
@@ -115,104 +108,206 @@ class _ProFilState extends State<ProFil> {
     );
   }
 
-  Padding SignEdit() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
-      child: Container(
-        alignment: Alignment.center,
-        width: double.infinity,
-        height: 50,
+  ListTile Settings() {
+    return ListTile(
+      leading: Container(
+        width: 40,
+        height: 40,
         decoration: BoxDecoration(
-          color: mains,
           borderRadius: BorderRadius.circular(10),
-        ),
-        child: Text(
-          "회원 정보 수정",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 23,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-    );
-  }
-
-  Padding SignDelete() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
-      child: Container(
-        alignment: Alignment.center,
-        width: double.infinity,
-        height: 50,
-        decoration: BoxDecoration(
           color: mains,
-          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: mains, width: 2),
         ),
-        child: Text(
-          "회원 탈퇴",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 23,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-    );
-  }
-
-  Padding info() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
-      child: Container(
-        width: double.infinity,
-        decoration: BoxDecoration(
+        child: Icon(
+          Icons.settings,
           color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
-          border: Border(
-              top: BorderSide(color: mains, width: 2),
-              bottom: BorderSide(color: mains, width: 2)),
+          size: 30,
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(20.0), // 내부 여백 추가
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                '$memberName 님 환영합니다!',
-                style: TextStyle(
-                  color: Colors.grey[600],
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 10),
-              Text(
-                '저희 쇼핑몰을 찾아주셔서 감사합니다.',
-                style: TextStyle(
-                  color: Colors.grey[600],
-                  fontSize: 16,
-                ),
-              ),
-              SizedBox(height: 10),
-              Text(
-                '뚱랑이와 그 친구들의 이야기를 들으러 오세요!',
-                style: TextStyle(
-                  color: Colors.grey[600],
-                  fontSize: 16,
-                ),
-              ),
-            ],
-          ),
+      ),
+      title: Text(
+        '설정',
+        style: TextStyle(
+          color: Colors.black,
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      trailing: Container(
+        width: 40,
+        height: 40,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(100),
+          color: Colors.grey[200],
+        ),
+        child: Icon(
+          Icons.arrow_forward_ios,
+          color: Colors.grey[600],
+          size: 30,
         ),
       ),
     );
   }
 
-  Padding logo() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-      child: Image.asset('assets/images/guzikTiger.jpg'),
+  ListTile OrderList() {
+    return ListTile(
+      leading: Container(
+        width: 40,
+        height: 40,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: mains,
+          border: Border.all(color: mains, width: 2),
+        ),
+        child: Icon(
+          Icons.credit_card,
+          color: Colors.white,
+          size: 30,
+        ),
+      ),
+      title: Text(
+        '주문 내역',
+        style: TextStyle(
+          color: Colors.black,
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      trailing: Container(
+        width: 40,
+        height: 40,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(100),
+          color: Colors.grey[200],
+        ),
+        child: Icon(
+          Icons.arrow_forward_ios,
+          color: Colors.grey[600],
+          size: 30,
+        ),
+      ),
+    );
+  }
+
+  ListTile Inquiryhistory() {
+    return ListTile(
+      leading: Container(
+        width: 40,
+        height: 40,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: mains,
+          border: Border.all(color: mains, width: 2),
+        ),
+        child: Icon(
+          Icons.assignment,
+          color: Colors.white,
+          size: 30,
+        ),
+      ),
+      title: Text(
+        '문의 내역',
+        style: TextStyle(
+          color: Colors.black,
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      trailing: Container(
+        width: 40,
+        height: 40,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(100),
+          color: Colors.grey[200],
+        ),
+        child: Icon(
+          Icons.arrow_forward_ios,
+          color: Colors.grey[600],
+          size: 30,
+        ),
+      ),
+    );
+  }
+
+  ListTile Info() {
+    return ListTile(
+      leading: Container(
+        width: 40,
+        height: 40,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: mains,
+          border: Border.all(color: mains, width: 2),
+        ),
+        child: Icon(
+          Icons.info,
+          color: Colors.white,
+          size: 30,
+        ),
+      ),
+      title: Text(
+        '나의 정보',
+        style: TextStyle(
+          color: Colors.black,
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      trailing: Container(
+        width: 40,
+        height: 40,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(100),
+          color: Colors.grey[200],
+        ),
+        child: Icon(
+          Icons.arrow_forward_ios,
+          color: Colors.grey[600],
+          size: 30,
+        ),
+      ),
+    );
+  }
+
+  GestureDetector LogOut() {
+    return GestureDetector(
+      onTap: _logout,
+      child: ListTile(
+        leading: Container(
+          width: 40,
+          height: 40,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: mains,
+            border: Border.all(color: mains, width: 2),
+          ),
+          child: Icon(
+            Icons.logout,
+            color: Colors.white,
+            size: 30,
+          ),
+        ),
+        title: Text(
+          '로그아웃',
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        trailing: Container(
+          width: 40,
+          height: 40,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(100),
+            color: Colors.grey[200],
+          ),
+          child: Icon(
+            Icons.arrow_forward_ios,
+            color: Colors.grey[600],
+            size: 30,
+          ),
+        ),
+      ),
     );
   }
 }

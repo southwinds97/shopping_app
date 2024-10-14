@@ -3,15 +3,15 @@ import 'package:shopping_app/constants/colors.dart';
 
 class Signup extends StatefulWidget {
   final VoidCallback show;
-  const Signup({super.key, required this.show});
+  const Signup({Key? key, required this.show}) : super(key: key);
 
   @override
   State<Signup> createState() => _SignupState();
 }
 
 class _SignupState extends State<Signup> {
-  FocusNode _focusNode1 = FocusNode();
-  FocusNode _focusNode2 = FocusNode();
+  FocusNode _idNode = FocusNode();
+  FocusNode _passwordNode = FocusNode();
   FocusNode _focusNode3 = FocusNode();
   final id = TextEditingController();
   final password = TextEditingController();
@@ -21,10 +21,10 @@ class _SignupState extends State<Signup> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _focusNode1.addListener(() {
+    _idNode.addListener(() {
       setState(() {});
     });
-    _focusNode2.addListener(() {
+    _passwordNode.addListener(() {
       setState(() {});
     });
     _focusNode3.addListener(() {
@@ -36,15 +36,15 @@ class _SignupState extends State<Signup> {
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    _focusNode1.dispose();
-    _focusNode2.dispose();
+    _idNode.dispose();
+    _passwordNode.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
+      body: SingleChildScrollView(
         child: Column(
           children: [
             logo(),
@@ -54,16 +54,14 @@ class _SignupState extends State<Signup> {
             textfield2(),
             SizedBox(height: 15),
             textfield3(),
-            SizedBox(height: 8),
-            have(),
             SizedBox(height: 10),
             signIN(),
             SizedBox(height: 10),
             or(),
             SizedBox(height: 10),
-            WithKakao(),
+            Cancel(),
             SizedBox(height: 10),
-            WithNaver(),
+            have(),
           ],
         ),
       ),
@@ -119,87 +117,29 @@ class _SignupState extends State<Signup> {
     );
   }
 
-  Padding WithKakao() {
+  Padding Cancel() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
-      child: Container(
+      child: GestureDetector(
+        onTap: widget.show,
+        child: Container(
           alignment: Alignment.center,
           width: double.infinity,
           height: 50,
           decoration: BoxDecoration(
-            color: const Color.fromRGBO(254, 229, 0, 1),
+            color: Colors.grey[600],
             borderRadius: BorderRadius.circular(10),
           ),
-          child: ListTile(
-            leading: Padding(
-              padding: const EdgeInsets.only(bottom: 5),
-              child: Image.asset(
-                'assets/images/kakao.png',
-                height: 30,
-              ),
+          child: Text(
+            "취소",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 23,
+              fontWeight: FontWeight.bold,
             ),
-            title: Padding(
-              padding: const EdgeInsets.only(bottom: 5),
-              child: Text(
-                "카카오 1초 로그인",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            trailing: Padding(
-              padding: const EdgeInsets.only(bottom: 5),
-              child: Icon(
-                Icons.arrow_right,
-                color: Colors.black,
-              ),
-            ),
-          )),
-    );
-  }
-
-  Padding WithNaver() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
-      child: Container(
-          alignment: Alignment.center,
-          width: double.infinity,
-          height: 50,
-          decoration: BoxDecoration(
-            color: const Color.fromRGBO(30, 200, 0, 1),
-            borderRadius: BorderRadius.circular(10),
           ),
-          child: ListTile(
-            leading: Padding(
-              padding: const EdgeInsets.only(bottom: 5),
-              child: Image.asset(
-                'assets/images/naver.png',
-                height: 30,
-              ),
-            ),
-            title: Padding(
-              padding: const EdgeInsets.only(bottom: 5),
-              child: Text(
-                "네이버 1초 로그인",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            trailing: Padding(
-              padding: const EdgeInsets.only(bottom: 5),
-              child: Icon(
-                Icons.arrow_right,
-                color: Colors.white,
-              ),
-            ),
-          )),
+        ),
+      ),
     );
   }
 
@@ -210,7 +150,7 @@ class _SignupState extends State<Signup> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Text(
-            "계정이 없으신가요?",
+            "계정이 있으신가요?",
             style: TextStyle(
               color: Colors.grey[700],
               fontSize: 14,
@@ -220,7 +160,7 @@ class _SignupState extends State<Signup> {
           GestureDetector(
             onTap: widget.show,
             child: Text(
-              "회원가입",
+              "로그인",
               style: TextStyle(
                 color: mains,
                 fontSize: 16,
@@ -243,12 +183,12 @@ class _SignupState extends State<Signup> {
         ),
         child: TextField(
           controller: id,
-          focusNode: _focusNode1,
+          focusNode: _idNode,
           decoration: InputDecoration(
               hintText: 'ID',
               prefixIcon: Icon(
                 Icons.person,
-                color: _focusNode1.hasFocus ? mains : Colors.grey[600],
+                color: _idNode.hasFocus ? mains : Colors.grey[600],
               ),
               contentPadding:
                   EdgeInsets.symmetric(horizontal: 15, vertical: 15),
@@ -281,14 +221,14 @@ class _SignupState extends State<Signup> {
         ),
         child: TextField(
           controller: password,
-          focusNode: _focusNode2,
+          focusNode: _passwordNode,
           obscureText: vissible,
           obscuringCharacter: '*',
           decoration: InputDecoration(
               hintText: 'Password',
               prefixIcon: Icon(
                 Icons.key,
-                color: _focusNode2.hasFocus ? mains : Colors.grey[600],
+                color: _passwordNode.hasFocus ? mains : Colors.grey[600],
               ),
               contentPadding:
                   EdgeInsets.symmetric(horizontal: 15, vertical: 15),
@@ -333,7 +273,7 @@ class _SignupState extends State<Signup> {
                   },
                   child: Icon(
                     vissible ? Icons.visibility_off : Icons.visibility,
-                    color: _focusNode2.hasFocus ? mains : Colors.grey[600],
+                    color: _focusNode3.hasFocus ? mains : Colors.grey[600],
                   )),
               hintText: 'Password Confirm',
               prefixIcon: Icon(

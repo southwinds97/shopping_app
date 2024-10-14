@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shopping_app/constants/colors.dart';
 import 'package:shopping_app/screens/product_detail_screen.dart';
-import 'package:shopping_app/data/product.dart'; // ProductDTO 클래스 임포트
+import 'package:shopping_app/data/productDTO.dart'; // ProductDTO 클래스 임포트
 
 class Category extends StatefulWidget {
   const Category({super.key});

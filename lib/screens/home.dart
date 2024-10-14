@@ -2,10 +2,13 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shopping_app/auth/auth.dart';
+import 'package:shopping_app/auth/main_auth.dart';
 import 'package:shopping_app/constants/colors.dart';
+import 'package:shopping_app/constants/navigation.dart';
 import 'package:shopping_app/screens/product_detail_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:shopping_app/data/product.dart'; // ProductDTO 클래스 임포트
+import 'package:shopping_app/data/productDTO.dart'; // ProductDTO 클래스 임포트
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -391,13 +394,22 @@ class _HomeState extends State<Home> {
             ),
             SizedBox(width: 10),
             // 상단 ui 로고
-            Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                image: DecorationImage(
-                  image: AssetImage('assets/images/profil.jpg'),
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => Navi(initialIndex: 3),
+                  ),
+                );
+              },
+              child: Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/profil.jpg'),
+                  ),
                 ),
               ),
             ),

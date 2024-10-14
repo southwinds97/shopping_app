@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shopping_app/auth/auth.dart';
 import 'package:shopping_app/constants/navigation.dart';
 import 'package:shopping_app/screens/login_page.dart';
 import 'package:shopping_app/screens/profil.dart';
@@ -35,7 +36,7 @@ class _MainAuthState extends State<MainAuth> {
         } else if (snapshot.hasData && snapshot.data == true) {
           return ProFil();
         } else {
-          return LoginPage(show: showLoginPage);
+          return AuthPage();
         }
       },
     );

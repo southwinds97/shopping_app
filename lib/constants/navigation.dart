@@ -8,16 +8,24 @@ import 'package:shopping_app/screens/profil.dart';
 import 'package:shopping_app/screens/wish_list.dart';
 
 class Navi extends StatefulWidget {
-  const Navi({super.key});
+  final int initialIndex;
+
+  const Navi({super.key, this.initialIndex = 0});
 
   @override
   State<Navi> createState() => _NaviState();
 }
 
-int index = 0;
-List screens = [Home(), Category(), WishList(), MainAuth()];
-
 class _NaviState extends State<Navi> {
+  int index = 0;
+  List screens = [Home(), Category(), WishList(), MainAuth()];
+
+  @override
+  void initState() {
+    super.initState();
+    index = widget.initialIndex;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
