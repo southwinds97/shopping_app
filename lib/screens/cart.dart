@@ -49,7 +49,7 @@ class _CartState extends State<Cart> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           '장바구니',
           style: TextStyle(
             color: Colors.white,
@@ -58,7 +58,7 @@ class _CartState extends State<Cart> {
           ),
         ),
         backgroundColor: mains,
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.white, // 뒤로가기 버튼 색상 설정
         ),
       ),
@@ -69,7 +69,7 @@ class _CartState extends State<Cart> {
           itemBuilder: (context, index) {
             final product = cartProducts[index];
             return Card(
-              margin: EdgeInsets.symmetric(vertical: 10),
+              margin: const EdgeInsets.symmetric(vertical: 10),
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Row(
@@ -83,28 +83,28 @@ class _CartState extends State<Cart> {
                         fit: BoxFit.cover,
                       ),
                     ),
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             product.productName ?? '',
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          SizedBox(height: 5),
+                          const SizedBox(height: 5),
                           Text(
-                            '\₩ ${currencyFormat.format(int.parse(product.price ?? '0'))}',
+                            '₩ ${currencyFormat.format(int.parse(product.price ?? '0'))}',
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                               color: mains.withOpacity(0.7),
                             ),
                           ),
-                          SizedBox(height: 5),
+                          const SizedBox(height: 5),
                           Text(
                             product.productContent ?? '',
                             style: TextStyle(
@@ -112,7 +112,7 @@ class _CartState extends State<Cart> {
                               color: Colors.grey.shade600,
                             ),
                           ),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           Row(
                             children: [
                               IconButton(
@@ -127,7 +127,7 @@ class _CartState extends State<Cart> {
                               ),
                               Text(
                                 '${product.quantity}',
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -166,7 +166,7 @@ class _CartState extends State<Cart> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              '합계: \₩ ${currencyFormat.format(cartProducts.fold<int>(0, (sum, item) => sum + int.parse(item.price ?? '0') * (item.quantity ?? 1)))}',
+              '합계: ₩ ${currencyFormat.format(cartProducts.fold<int>(0, (sum, item) => sum + int.parse(item.price ?? '0') * (item.quantity ?? 1)))}',
               style: TextStyle(
                 color: mains,
                 fontSize: 19,
@@ -184,7 +184,7 @@ class _CartState extends State<Cart> {
                   color: mains,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Row(
+                child: const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Icon(
@@ -192,7 +192,7 @@ class _CartState extends State<Cart> {
                       color: Colors.white,
                     ),
                     Text(
-                      '결제',
+                      '주문하기',
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,

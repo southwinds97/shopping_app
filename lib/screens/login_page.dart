@@ -4,19 +4,18 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shopping_app/constants/colors.dart';
 import 'package:shopping_app/constants/navigation.dart';
-import 'package:shopping_app/screens/home.dart';
 
 class LoginPage extends StatefulWidget {
   final VoidCallback show;
-  const LoginPage({Key? key, required this.show}) : super(key: key);
+  const LoginPage({super.key, required this.show});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-  FocusNode _focusNode1 = FocusNode();
-  FocusNode _focusNode2 = FocusNode();
+  final FocusNode _focusNode1 = FocusNode();
+  final FocusNode _focusNode2 = FocusNode();
   final id = TextEditingController();
   final password = TextEditingController();
   bool vissible = true;
@@ -55,13 +54,14 @@ class _LoginPageState extends State<LoginPage> {
       final decodedResponse = json.decode(utf8.decode(response.bodyBytes));
       // 로그인 성공 처리
       SharedPreferences prefs = await SharedPreferences.getInstance();
+      // 로그인 정보 저장
       await prefs.setBool('isLoggedIn', true);
       await prefs.setString('memberId', id.text);
       await prefs.setString('memberName', decodedResponse['name']);
 
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => Navi()),
+        MaterialPageRoute(builder: (context) => const Navi()),
       );
     } else {
       // 로그인 실패 처리
@@ -69,14 +69,14 @@ class _LoginPageState extends State<LoginPage> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Text('로그인 실패'),
-            content: Text('ID 또는 비밀번호가 잘못되었습니다.'),
+            title: const Text('로그인 실패'),
+            content: const Text('ID 또는 비밀번호가 잘못되었습니다.'),
             actions: [
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text('확인'),
+                child: const Text('확인'),
               ),
             ],
           );
@@ -93,21 +93,21 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           children: [
             logo(),
-            SizedBox(height: 34),
+            const SizedBox(height: 34),
             textfield(),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
             textfield2(),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             have(),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             signIN(),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
             or(),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
             WithKakao(),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
             WithNaver(),
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
           ],
         ),
       ),
@@ -117,7 +117,7 @@ class _LoginPageState extends State<LoginPage> {
   Row or() {
     return Row(
       children: [
-        Expanded(
+        const Expanded(
             child: Divider(
           thickness: 1.5,
           endIndent: 4,
@@ -130,7 +130,7 @@ class _LoginPageState extends State<LoginPage> {
             fontSize: 14,
           ),
         ),
-        Expanded(
+        const Expanded(
             child: Divider(
           thickness: 1.5,
           endIndent: 20,
@@ -153,7 +153,7 @@ class _LoginPageState extends State<LoginPage> {
             color: mains,
             borderRadius: BorderRadius.circular(10),
           ),
-          child: Text(
+          child: const Text(
             "로그인",
             style: TextStyle(
               color: Colors.white,
@@ -185,8 +185,8 @@ class _LoginPageState extends State<LoginPage> {
                 height: 30,
               ),
             ),
-            title: Padding(
-              padding: const EdgeInsets.only(bottom: 5),
+            title: const Padding(
+              padding: EdgeInsets.only(bottom: 5),
               child: Text(
                 "카카오 1초 로그인",
                 style: TextStyle(
@@ -197,8 +197,8 @@ class _LoginPageState extends State<LoginPage> {
                 textAlign: TextAlign.center,
               ),
             ),
-            trailing: Padding(
-              padding: const EdgeInsets.only(bottom: 5),
+            trailing: const Padding(
+              padding: EdgeInsets.only(bottom: 5),
               child: Icon(
                 Icons.arrow_right,
                 color: Colors.black,
@@ -227,8 +227,8 @@ class _LoginPageState extends State<LoginPage> {
                 height: 30,
               ),
             ),
-            title: Padding(
-              padding: const EdgeInsets.only(bottom: 5),
+            title: const Padding(
+              padding: EdgeInsets.only(bottom: 5),
               child: Text(
                 "네이버 1초 로그인",
                 style: TextStyle(
@@ -239,8 +239,8 @@ class _LoginPageState extends State<LoginPage> {
                 textAlign: TextAlign.center,
               ),
             ),
-            trailing: Padding(
-              padding: const EdgeInsets.only(bottom: 5),
+            trailing: const Padding(
+              padding: EdgeInsets.only(bottom: 5),
               child: Icon(
                 Icons.arrow_right,
                 color: Colors.white,
@@ -263,7 +263,7 @@ class _LoginPageState extends State<LoginPage> {
               fontSize: 14,
             ),
           ),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           GestureDetector(
             onTap: widget.show,
             child: Text(
@@ -298,10 +298,10 @@ class _LoginPageState extends State<LoginPage> {
                 color: _focusNode1.hasFocus ? mains : Colors.grey[600],
               ),
               contentPadding:
-                  EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                  const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   color: Color(0xffc5c5c5),
                   width: 2,
                 ),
@@ -348,10 +348,10 @@ class _LoginPageState extends State<LoginPage> {
                 color: _focusNode2.hasFocus ? mains : Colors.grey[600],
               ),
               contentPadding:
-                  EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                  const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   color: Color(0xffc5c5c5),
                   width: 2,
                 ),

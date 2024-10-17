@@ -35,7 +35,7 @@ class _ProFilState extends State<ProFil> {
 
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => Navi()), // 메인화면으로 이동
+      MaterialPageRoute(builder: (context) => const Navi()), // 메인화면으로 이동
     );
   }
 
@@ -44,9 +44,9 @@ class _ProFilState extends State<ProFil> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.only(top: 50),
+          padding: const EdgeInsets.only(top: 50),
           child: Container(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: Column(
               children: [
                 SizedBox(
@@ -54,15 +54,15 @@ class _ProFilState extends State<ProFil> {
                   height: 120,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(100),
-                    child: Image(
+                    child: const Image(
                       image: AssetImage('assets/images/profil.jpg'),
                     ),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Text(
-                  '$memberName',
-                  style: TextStyle(
+                  memberName,
+                  style: const TextStyle(
                     color: Colors.black,
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -70,7 +70,7 @@ class _ProFilState extends State<ProFil> {
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  '$memberId',
+                  memberId,
                   style: TextStyle(
                     color: Colors.grey[600],
                     fontSize: 16,
@@ -79,7 +79,6 @@ class _ProFilState extends State<ProFil> {
                 const SizedBox(height: 10),
                 ElevatedButton(
                   onPressed: () {},
-                  child: const Text('프로필 수정'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: mains,
                     foregroundColor: Colors.white,
@@ -87,6 +86,7 @@ class _ProFilState extends State<ProFil> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
+                  child: const Text('프로필 수정'),
                 ),
                 const SizedBox(height: 20),
                 const Divider(),
@@ -118,13 +118,13 @@ class _ProFilState extends State<ProFil> {
           color: mains,
           border: Border.all(color: mains, width: 2),
         ),
-        child: Icon(
+        child: const Icon(
           Icons.settings,
           color: Colors.white,
           size: 30,
         ),
       ),
-      title: Text(
+      title: const Text(
         '설정',
         style: TextStyle(
           color: Colors.black,
@@ -158,13 +158,13 @@ class _ProFilState extends State<ProFil> {
           color: mains,
           border: Border.all(color: mains, width: 2),
         ),
-        child: Icon(
+        child: const Icon(
           Icons.credit_card,
           color: Colors.white,
           size: 30,
         ),
       ),
-      title: Text(
+      title: const Text(
         '주문 내역',
         style: TextStyle(
           color: Colors.black,
@@ -198,13 +198,13 @@ class _ProFilState extends State<ProFil> {
           color: mains,
           border: Border.all(color: mains, width: 2),
         ),
-        child: Icon(
+        child: const Icon(
           Icons.assignment,
           color: Colors.white,
           size: 30,
         ),
       ),
-      title: Text(
+      title: const Text(
         '문의 내역',
         style: TextStyle(
           color: Colors.black,
@@ -238,13 +238,13 @@ class _ProFilState extends State<ProFil> {
           color: mains,
           border: Border.all(color: mains, width: 2),
         ),
-        child: Icon(
+        child: const Icon(
           Icons.info,
           color: Colors.white,
           size: 30,
         ),
       ),
-      title: Text(
+      title: const Text(
         '나의 정보',
         style: TextStyle(
           color: Colors.black,
@@ -280,13 +280,13 @@ class _ProFilState extends State<ProFil> {
             color: mains,
             border: Border.all(color: mains, width: 2),
           ),
-          child: Icon(
+          child: const Icon(
             Icons.logout,
             color: Colors.white,
             size: 30,
           ),
         ),
-        title: Text(
+        title: const Text(
           '로그아웃',
           style: TextStyle(
             color: Colors.black,

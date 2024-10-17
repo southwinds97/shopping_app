@@ -18,7 +18,7 @@ class Navi extends StatefulWidget {
 
 class _NaviState extends State<Navi> {
   int index = 0;
-  List screens = [Home(), Category(), WishList(), MainAuth()];
+  List screens = [const Home(), const Category(), const WishList(), const MainAuth()];
 
   @override
   void initState() {
@@ -35,22 +35,22 @@ class _NaviState extends State<Navi> {
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => Cart(),
+              builder: (context) => const Cart(),
             ),
           );
         },
-        child: Icon(
+        backgroundColor: mains,
+        shape: const CircleBorder(),
+        child: const Icon(
           Icons.shopping_cart_outlined,
           color: Colors.white,
         ),
-        backgroundColor: mains,
-        shape: CircleBorder(),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
         color: Colors.white,
         height: 60,
-        shape: CircularNotchedRectangle(),
+        shape: const CircularNotchedRectangle(),
         notchMargin: 6,
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 5),
@@ -81,7 +81,7 @@ class _NaviState extends State<Navi> {
                   color: index == 1 ? mains : Colors.grey,
                 ),
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               GestureDetector(
                 onTap: () {
                   setState(() {

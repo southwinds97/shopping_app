@@ -3,16 +3,16 @@ import 'package:shopping_app/constants/colors.dart';
 
 class Signup extends StatefulWidget {
   final VoidCallback show;
-  const Signup({Key? key, required this.show}) : super(key: key);
+  const Signup({super.key, required this.show});
 
   @override
   State<Signup> createState() => _SignupState();
 }
 
 class _SignupState extends State<Signup> {
-  FocusNode _idNode = FocusNode();
-  FocusNode _passwordNode = FocusNode();
-  FocusNode _focusNode3 = FocusNode();
+  final FocusNode _idNode = FocusNode();
+  final FocusNode _passwordNode = FocusNode();
+  final FocusNode _passwordConfirmNode = FocusNode();
   final id = TextEditingController();
   final password = TextEditingController();
   final passwordConfirm = TextEditingController();
@@ -27,7 +27,7 @@ class _SignupState extends State<Signup> {
     _passwordNode.addListener(() {
       setState(() {});
     });
-    _focusNode3.addListener(() {
+    _passwordConfirmNode.addListener(() {
       setState(() {});
     });
   }
@@ -48,19 +48,19 @@ class _SignupState extends State<Signup> {
         child: Column(
           children: [
             logo(),
-            SizedBox(height: 0),
-            textfield(),
-            SizedBox(height: 15),
-            textfield2(),
-            SizedBox(height: 15),
-            textfield3(),
-            SizedBox(height: 10),
+            const SizedBox(height: 0),
+            ID(),
+            const SizedBox(height: 15),
+            Password(),
+            const SizedBox(height: 15),
+            PasswordConfirm(),
+            const SizedBox(height: 10),
             signIN(),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             or(),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Cancel(),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             have(),
           ],
         ),
@@ -71,7 +71,7 @@ class _SignupState extends State<Signup> {
   Row or() {
     return Row(
       children: [
-        Expanded(
+        const Expanded(
             child: Divider(
           thickness: 1.5,
           endIndent: 4,
@@ -84,7 +84,7 @@ class _SignupState extends State<Signup> {
             fontSize: 14,
           ),
         ),
-        Expanded(
+        const Expanded(
             child: Divider(
           thickness: 1.5,
           endIndent: 20,
@@ -105,7 +105,7 @@ class _SignupState extends State<Signup> {
           color: mains,
           borderRadius: BorderRadius.circular(10),
         ),
-        child: Text(
+        child: const Text(
           "회원가입",
           style: TextStyle(
             color: Colors.white,
@@ -130,7 +130,7 @@ class _SignupState extends State<Signup> {
             color: Colors.grey[600],
             borderRadius: BorderRadius.circular(10),
           ),
-          child: Text(
+          child: const Text(
             "취소",
             style: TextStyle(
               color: Colors.white,
@@ -156,7 +156,7 @@ class _SignupState extends State<Signup> {
               fontSize: 14,
             ),
           ),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           GestureDetector(
             onTap: widget.show,
             child: Text(
@@ -173,7 +173,7 @@ class _SignupState extends State<Signup> {
     );
   }
 
-  Padding textfield() {
+  Padding ID() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Container(
@@ -185,16 +185,16 @@ class _SignupState extends State<Signup> {
           controller: id,
           focusNode: _idNode,
           decoration: InputDecoration(
-              hintText: 'ID',
+              hintText: '아이디',
               prefixIcon: Icon(
                 Icons.person,
                 color: _idNode.hasFocus ? mains : Colors.grey[600],
               ),
               contentPadding:
-                  EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                  const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   color: Color(0xffc5c5c5),
                   width: 2,
                 ),
@@ -211,7 +211,7 @@ class _SignupState extends State<Signup> {
     );
   }
 
-  Padding textfield2() {
+  Padding Password() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Container(
@@ -225,16 +225,16 @@ class _SignupState extends State<Signup> {
           obscureText: vissible,
           obscuringCharacter: '*',
           decoration: InputDecoration(
-              hintText: 'Password',
+              hintText: '비밀번호',
               prefixIcon: Icon(
                 Icons.key,
                 color: _passwordNode.hasFocus ? mains : Colors.grey[600],
               ),
               contentPadding:
-                  EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                  const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   color: Color(0xffc5c5c5),
                   width: 2,
                 ),
@@ -251,7 +251,7 @@ class _SignupState extends State<Signup> {
     );
   }
 
-  Padding textfield3() {
+  Padding PasswordConfirm() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Container(
@@ -261,7 +261,7 @@ class _SignupState extends State<Signup> {
         ),
         child: TextField(
           controller: passwordConfirm,
-          focusNode: _focusNode3,
+          focusNode: _passwordConfirmNode,
           obscureText: vissible,
           obscuringCharacter: '*',
           decoration: InputDecoration(
@@ -273,18 +273,20 @@ class _SignupState extends State<Signup> {
                   },
                   child: Icon(
                     vissible ? Icons.visibility_off : Icons.visibility,
-                    color: _focusNode3.hasFocus ? mains : Colors.grey[600],
+                    color: _passwordConfirmNode.hasFocus
+                        ? mains
+                        : Colors.grey[600],
                   )),
-              hintText: 'Password Confirm',
+              hintText: '비밀번호 확인',
               prefixIcon: Icon(
                 Icons.key,
-                color: _focusNode3.hasFocus ? mains : Colors.grey[600],
+                color: _passwordConfirmNode.hasFocus ? mains : Colors.grey[600],
               ),
               contentPadding:
-                  EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                  const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   color: Color(0xffc5c5c5),
                   width: 2,
                 ),

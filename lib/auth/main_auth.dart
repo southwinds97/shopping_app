@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shopping_app/auth/auth.dart';
-import 'package:shopping_app/constants/navigation.dart';
-import 'package:shopping_app/screens/login_page.dart';
 import 'package:shopping_app/screens/profil.dart';
 
 class MainAuth extends StatefulWidget {
+  const MainAuth({super.key});
+
   @override
   _MainAuthState createState() => _MainAuthState();
 }
@@ -26,7 +26,7 @@ class _MainAuthState extends State<MainAuth> {
       future: checkLoginStatus(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Scaffold(
+          return const Scaffold(
             body: Center(child: CircularProgressIndicator()),
           );
         } else if (snapshot.hasError) {
@@ -34,9 +34,9 @@ class _MainAuthState extends State<MainAuth> {
             body: Center(child: Text('Error: ${snapshot.error}')),
           );
         } else if (snapshot.hasData && snapshot.data == true) {
-          return ProFil();
+          return const ProFil();
         } else {
-          return AuthPage();
+          return const AuthPage();
         }
       },
     );

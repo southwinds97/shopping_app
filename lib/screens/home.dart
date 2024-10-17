@@ -54,7 +54,7 @@ class _HomeState extends State<Home> {
             // SearchBox(),
             bannerr(),
             SliverPadding(
-              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 25),
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 25),
               sliver: SliverGrid(
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
@@ -96,10 +96,9 @@ class _HomeState extends State<Home> {
                                 // 글자가 길면 ...으로 처리
                                 product.productName != null &&
                                         product.productName!.length > 10
-                                    ? product.productName!.substring(0, 10) +
-                                        '...'
+                                    ? '${product.productName!.substring(0, 10)}...'
                                     : product.productName ?? '',
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -119,22 +118,22 @@ class _HomeState extends State<Home> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      '\₩ ' + (product.price ?? ''),
+                                      '₩ ${product.price ?? ''}',
                                       style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
                                           color: mains.withOpacity(0.7)),
                                     ),
                                     Container(
-                                      child: Icon(
-                                        Icons.shopping_cart_outlined,
-                                        color: Colors.white,
-                                      ),
                                       width: 40,
                                       height: 40,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(11),
                                         color: mains.withOpacity(0.7),
+                                      ),
+                                      child: const Icon(
+                                        Icons.shopping_cart_outlined,
+                                        color: Colors.white,
                                       ),
                                     ),
                                   ],
@@ -148,7 +147,7 @@ class _HomeState extends State<Home> {
                   },
                   childCount: min(products.length, 50),
                 ),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   mainAxisExtent: 270,
                   crossAxisSpacing: 10,
@@ -166,7 +165,7 @@ class _HomeState extends State<Home> {
     return SliverToBoxAdapter(
       child: Column(
         children: [
-          Container(
+          SizedBox(
             height: 200,
             width: double.infinity,
             child: PageView(
@@ -233,7 +232,7 @@ class _HomeState extends State<Home> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Text(
                 '새 상품 안내',
                 style: TextStyle(
@@ -242,32 +241,30 @@ class _HomeState extends State<Home> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 4),
+              const SizedBox(height: 4),
               Text(
                 products.isNotEmpty
                     ? (products[count].productName != null &&
                             products[count].productName!.length > 10
-                        ? products[count].productName!.substring(0, 10) + '...'
+                        ? '${products[count].productName!.substring(0, 10)}...'
                         : products[count].productName ?? '')
                     : '',
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
                 ),
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
               ),
-              SizedBox(height: 4),
+              const SizedBox(height: 4),
               Text(
-                products.isNotEmpty
-                    ? '\₩ ' + (products[count].price ?? '')
-                    : '',
-                style: TextStyle(
+                products.isNotEmpty ? '₩ ${products[count].price ?? ''}' : '',
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Container(
                 alignment: Alignment.center,
                 width: 90,
@@ -276,7 +273,7 @@ class _HomeState extends State<Home> {
                   borderRadius: BorderRadius.circular(10),
                   color: mains,
                 ),
-                child: Text(
+                child: const Text(
                   '상품 추가',
                   style: TextStyle(
                     color: Colors.white,
@@ -311,13 +308,14 @@ class _HomeState extends State<Home> {
         child: Row(
           children: [
             Expanded(
+              flex: 6,
               child: Container(
                 height: 50,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.white,
                 ),
-                child: Row(
+                child: const Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(width: 15),
@@ -330,23 +328,22 @@ class _HomeState extends State<Home> {
                   ],
                 ),
               ),
-              flex: 6,
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Expanded(
+              flex: 1,
               child: Container(
                 height: 50,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: mains,
                 ),
-                child: Icon(
+                child: const Icon(
                   Icons.filter_alt,
                   color: Colors.white,
                   size: 27,
                 ),
               ),
-              flex: 1,
             )
           ],
         ),
@@ -370,9 +367,9 @@ class _HomeState extends State<Home> {
                 borderRadius: BorderRadius.circular(10),
                 color: Colors.white,
               ),
-              child: Icon(Icons.list),
+              child: const Icon(Icons.list),
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             // 상단 ui 타이틀
             Container(
               width: 240,
@@ -381,7 +378,7 @@ class _HomeState extends State<Home> {
                 borderRadius: BorderRadius.circular(10),
                 color: Colors.white,
               ),
-              child: Center(
+              child: const Center(
                 child: Text(
                   'GUZIK TIGER',
                   style: TextStyle(
@@ -392,13 +389,14 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             // 상단 ui 로고
             GestureDetector(
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (BuildContext context) => Navi(initialIndex: 3),
+                    builder: (BuildContext context) =>
+                        const Navi(initialIndex: 3),
                   ),
                 );
               },
@@ -407,7 +405,7 @@ class _HomeState extends State<Home> {
                 height: 40,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  image: DecorationImage(
+                  image: const DecorationImage(
                     image: AssetImage('assets/images/profil.jpg'),
                   ),
                 ),

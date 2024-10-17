@@ -15,7 +15,7 @@ class Category extends StatefulWidget {
 
 class _CategoryState extends State<Category> {
   List<ProductDTO> categories = [];
-  TextEditingController _searchController = TextEditingController();
+  final TextEditingController _searchController = TextEditingController();
 
   @override
   void initState() {
@@ -53,7 +53,7 @@ class _CategoryState extends State<Category> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           '카테고리',
           style: TextStyle(
             color: Colors.white,
@@ -62,7 +62,7 @@ class _CategoryState extends State<Category> {
           ),
         ),
         backgroundColor: mains,
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.white, // 뒤로가기 버튼 색상 설정
         ),
       ),
@@ -94,12 +94,16 @@ class _CategoryState extends State<Category> {
                       onTap: () => fetchCategories('케이스'),
                     ),
                     CategoryButton(
+                      label: '컵',
+                      onTap: () => fetchCategories('컵'),
+                    ),
+                    CategoryButton(
                       label: '패드',
                       onTap: () => fetchCategories('패드'),
                     ),
                     CategoryButton(
-                      label: '텀블러',
-                      onTap: () => fetchCategories('텀블러'),
+                      label: '스티커',
+                      onTap: () => fetchCategories('스티커'),
                     ),
                     CategoryButton(
                       label: '엽서',
@@ -115,9 +119,10 @@ class _CategoryState extends State<Category> {
                 slivers: [
                   SearchBox(),
                   SliverPadding(
-                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 25),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 15, vertical: 25),
                     sliver: categories.isEmpty
-                        ? SliverToBoxAdapter(
+                        ? const SliverToBoxAdapter(
                             child: Center(
                               child: Text('카테고리를 불러올 수 없습니다.'),
                             ),
@@ -167,11 +172,9 @@ class _CategoryState extends State<Category> {
                                                     category.productName!
                                                             .length >
                                                         10
-                                                ? category.productName!
-                                                        .substring(0, 10) +
-                                                    '...'
+                                                ? '${category.productName!.substring(0, 10)}...'
                                                 : category.productName ?? '',
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               fontSize: 18,
                                               fontWeight: FontWeight.bold,
                                             ),
@@ -192,8 +195,7 @@ class _CategoryState extends State<Category> {
                                                       .spaceBetween,
                                               children: [
                                                 Text(
-                                                  '\₩ ' +
-                                                      (category.price ?? ''),
+                                                  '₩ ${category.price ?? ''}',
                                                   style: TextStyle(
                                                       fontSize: 18,
                                                       fontWeight:
@@ -202,11 +204,6 @@ class _CategoryState extends State<Category> {
                                                           .withOpacity(0.7)),
                                                 ),
                                                 Container(
-                                                  child: Icon(
-                                                    Icons
-                                                        .shopping_cart_outlined,
-                                                    color: Colors.white,
-                                                  ),
                                                   width: 40,
                                                   height: 40,
                                                   decoration: BoxDecoration(
@@ -215,6 +212,11 @@ class _CategoryState extends State<Category> {
                                                             11),
                                                     color:
                                                         mains.withOpacity(0.7),
+                                                  ),
+                                                  child: const Icon(
+                                                    Icons
+                                                        .shopping_cart_outlined,
+                                                    color: Colors.white,
                                                   ),
                                                 ),
                                               ],
@@ -229,7 +231,7 @@ class _CategoryState extends State<Category> {
                               childCount: min(categories.length, 50),
                             ),
                             gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
+                                const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2,
                               mainAxisExtent: 270,
                               crossAxisSpacing: 10,
@@ -254,6 +256,7 @@ class _CategoryState extends State<Category> {
         child: Row(
           children: [
             Expanded(
+              flex: 6,
               child: Container(
                 height: 50,
                 decoration: BoxDecoration(
@@ -263,13 +266,13 @@ class _CategoryState extends State<Category> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(width: 15),
-                    Icon(Icons.search, color: Colors.grey),
-                    SizedBox(width: 15),
+                    const SizedBox(width: 15),
+                    const Icon(Icons.search, color: Colors.grey),
+                    const SizedBox(width: 15),
                     Expanded(
                       child: TextField(
                         controller: _searchController,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           hintText: '검색할 상품을 입력해주세요.',
                           border: InputBorder.none,
                         ),
@@ -278,10 +281,10 @@ class _CategoryState extends State<Category> {
                   ],
                 ),
               ),
-              flex: 6,
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Expanded(
+              flex: 1,
               child: GestureDetector(
                 onTap: () {
                   String keyword = _searchController.text.isEmpty
@@ -295,14 +298,13 @@ class _CategoryState extends State<Category> {
                     borderRadius: BorderRadius.circular(10),
                     color: mains,
                   ),
-                  child: Icon(
+                  child: const Icon(
                     Icons.search_outlined,
                     color: Colors.white,
                     size: 27,
                   ),
                 ),
               ),
-              flex: 1,
             ),
           ],
         ),
@@ -317,6 +319,7 @@ class CategoryButton extends StatelessWidget {
   final VoidCallback onTap;
 
   const CategoryButton({
+    super.key,
     required this.label,
     required this.onTap,
   });

@@ -6,7 +6,7 @@ import 'package:shopping_app/screens/home.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   final ProductDTO product;
-  ProductDetailScreen({super.key, required this.product});
+  const ProductDetailScreen({super.key, required this.product});
 
   @override
   State<ProductDetailScreen> createState() => _ProductDetailScreenState();
@@ -19,7 +19,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    List<String> get_images = [
+    List<String> getImages = [
       if (widget.product.imgId != null) widget.product.imgId!,
       if (widget.product.imgId != null) widget.product.imgId!,
       if (widget.product.imgId != null) widget.product.imgId!,
@@ -33,7 +33,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              '\₩ ' + (widget.product.price ?? ''),
+              '₩ ${widget.product.price ?? ''}',
               style: TextStyle(
                 color: mains,
                 fontSize: 19,
@@ -51,7 +51,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   color: mains,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Row(
+                child: const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Icon(
@@ -59,11 +59,11 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       color: Colors.white,
                     ),
                     Text(
-                      '상품 추가',
+                      '장바구니',
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
-                        fontSize: 15,
+                        fontSize: 20,
                       ),
                     ),
                   ],
@@ -80,17 +80,18 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
             SliverAppBar(
               flexibleSpace: FlexibleSpaceBar(
                 background: Image.asset(
-                  'assets/images/productList/${get_images[indexx]}',
+                  'assets/images/productList/${getImages[indexx]}',
                   fit: BoxFit.cover,
                 ),
               ),
               expandedHeight: 400,
               backgroundColor: backgroundColor,
               bottom: PreferredSize(
+                preferredSize: const Size.fromHeight(10),
                 child: Container(
                   height: 20,
                   width: double.infinity,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(70),
@@ -99,13 +100,13 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   ),
                   child: Column(
                     children: [
-                      SizedBox(height: 7),
+                      const SizedBox(height: 7),
                       Container(
                         height: 4,
                         width: 100,
                         decoration: BoxDecoration(
                           color: mains,
-                          borderRadius: BorderRadius.only(
+                          borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(70),
                             topRight: Radius.circular(70),
                           ),
@@ -114,14 +115,13 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     ],
                   ),
                 ),
-                preferredSize: Size.fromHeight(10),
               ),
               automaticallyImplyLeading: false,
               actions: [
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: CircleAvatar(
-                    backgroundColor: Color.fromRGBO(250, 250, 250, 0.6),
+                    backgroundColor: const Color.fromRGBO(250, 250, 250, 0.6),
                     radius: 18,
                     child: Icon(
                       Icons.favorite_border,
@@ -135,11 +135,11 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 onTap: () {
                   Navigator.of(context).pop(
                     MaterialPageRoute(
-                      builder: (BuildContext context) => Home(),
+                      builder: (BuildContext context) => const Home(),
                     ),
                   );
                 },
-                child: CircleAvatar(
+                child: const CircleAvatar(
                   backgroundColor: Color.fromRGBO(250, 250, 250, 0.6),
                   radius: 18,
                   child: Icon(
@@ -151,28 +151,28 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               ),
             ),
             SliverPadding(
-              padding: EdgeInsets.symmetric(horizontal: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 15),
               sliver: SliverToBoxAdapter(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Text(
                       widget.product.productName ?? '',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 24,
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 12),
+                    const SizedBox(height: 12),
                     Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.star,
                           color: Colors.amber,
                         ),
-                        SizedBox(width: 6),
+                        const SizedBox(width: 6),
                         Text(
                           '4.3',
                           style: TextStyle(
@@ -183,11 +183,11 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 20),
-                    Container(
+                    const SizedBox(height: 20),
+                    SizedBox(
                       height: 70,
                       child: ListView.builder(
-                        itemCount: get_images.length,
+                        itemCount: getImages.length,
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
                           return Padding(
@@ -210,7 +210,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                   borderRadius: BorderRadius.circular(10),
                                   image: DecorationImage(
                                     image: AssetImage(
-                                      'assets/images/productList/${get_images[index]}',
+                                      'assets/images/productList/${getImages[index]}',
                                     ),
                                     fit: BoxFit.cover,
                                   ),
@@ -221,8 +221,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         },
                       ),
                     ),
-                    SizedBox(height: 25),
-                    Text(
+                    const SizedBox(height: 25),
+                    const Text(
                       '디자인',
                       style: TextStyle(
                         fontSize: 18,
@@ -230,15 +230,15 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 15),
-                    Container(
+                    const SizedBox(height: 15),
+                    SizedBox(
                       height: 35,
                       child: ListView.builder(
                         itemCount: option.length,
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
                           return Padding(
-                            padding: EdgeInsets.only(right: 11),
+                            padding: const EdgeInsets.only(right: 11),
                             child: GestureDetector(
                               onTap: () {
                                 setState(() {
@@ -258,8 +258,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 child: Text(
-                                  '${option[index]}',
-                                  style: TextStyle(
+                                  option[index],
+                                  style: const TextStyle(
                                     fontSize: 14,
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold,
@@ -271,8 +271,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         },
                       ),
                     ),
-                    SizedBox(height: 20),
-                    Text(
+                    const SizedBox(height: 20),
+                    const Text(
                       '상세정보',
                       style: TextStyle(
                         fontSize: 18,
@@ -280,7 +280,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Padding(
                       padding: const EdgeInsets.only(bottom: 20),
                       child: Text(
