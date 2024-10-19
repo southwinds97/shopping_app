@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_app/screens/login_page.dart';
+import 'package:shopping_app/screens/loginPage.dart';
 import 'package:shopping_app/screens/signup.dart';
 
-class AuthPage extends StatefulWidget {
-  const AuthPage({super.key});
+class LoginAuth extends StatefulWidget {
+  const LoginAuth({super.key});
 
   @override
-  State<AuthPage> createState() => _AuthPageState();
+  State<LoginAuth> createState() => _LoginAuthState();
 }
 
-class _AuthPageState extends State<AuthPage> {
+class _LoginAuthState extends State<LoginAuth> {
   bool a = true;
   void go() {
     setState(() {
@@ -26,4 +26,3 @@ class _AuthPageState extends State<AuthPage> {
     }
   }
 }
- 

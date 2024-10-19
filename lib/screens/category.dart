@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shopping_app/constants/colors.dart';
-import 'package:shopping_app/screens/product_detail_screen.dart';
+import 'package:shopping_app/screens/productDetail.dart';
 import 'package:shopping_app/data/productDTO.dart'; // ProductDTO 클래스 임포트
 
 class Category extends StatefulWidget {
@@ -26,7 +26,8 @@ class _CategoryState extends State<Category> {
   Future<void> fetchCategories(String keyword) async {
     try {
       final response = await http.post(
-        Uri.parse('http://192.168.0.33:8586/api/category'),
+        Uri.parse(
+            'http://ec2-54-206-169-132.ap-southeast-2.compute.amazonaws.com:8586/api/category'),
         headers: {'Content-Type': 'application/json'},
         body: json.encode({'keyword': keyword}),
       );
@@ -137,7 +138,7 @@ class _CategoryState extends State<Category> {
                                       MaterialPageRoute(
                                         builder: (BuildContext context) =>
                                             ProductDetailScreen(
-                                          product: category,
+                                          productId: category.productId!,
                                         ),
                                       ),
                                     );

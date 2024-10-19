@@ -2,11 +2,11 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:shopping_app/auth/auth.dart';
-import 'package:shopping_app/auth/main_auth.dart';
+import 'package:shopping_app/auth/loginAuth.dart';
+import 'package:shopping_app/auth/profilAuth.dart';
 import 'package:shopping_app/constants/colors.dart';
 import 'package:shopping_app/constants/navigation.dart';
-import 'package:shopping_app/screens/product_detail_screen.dart';
+import 'package:shopping_app/screens/productDetail.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:shopping_app/data/productDTO.dart'; // ProductDTO 클래스 임포트
 
@@ -29,7 +29,8 @@ class _HomeState extends State<Home> {
   }
 
   Future<void> fetchProducts() async {
-    final response = await http.get(Uri.parse('http://192.168.0.33:8586/api/'));
+    final response = await http.get(Uri.parse(
+        'http://ec2-54-206-169-132.ap-southeast-2.compute.amazonaws.com:8586/api/'));
 
     if (response.statusCode == 200) {
       final decodedResponse = json.decode(utf8.decode(response.bodyBytes));
@@ -65,7 +66,7 @@ class _HomeState extends State<Home> {
                           MaterialPageRoute(
                             builder: (BuildContext context) =>
                                 ProductDetailScreen(
-                              product: product,
+                              productId: product.productId!,
                             ),
                           ),
                         );
@@ -265,20 +266,31 @@ class _HomeState extends State<Home> {
                 ),
               ),
               const SizedBox(height: 20),
-              Container(
-                alignment: Alignment.center,
-                width: 90,
-                height: 37,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: mains,
-                ),
-                child: const Text(
-                  '상품 추가',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => ProductDetailScreen(
+                        productId: products[count].productId!,
+                      ),
+                    ),
+                  );
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  width: 90,
+                  height: 37,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: mains,
+                  ),
+                  child: const Text(
+                    '바로가기',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               )

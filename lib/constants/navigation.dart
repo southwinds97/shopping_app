@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_app/auth/main_auth.dart';
+import 'package:shopping_app/auth/profilAuth.dart';
+import 'package:shopping_app/auth/wishlistAuth.dart';
 import 'package:shopping_app/constants/colors.dart';
 import 'package:shopping_app/screens/cart.dart';
 import 'package:shopping_app/screens/category.dart';
 import 'package:shopping_app/screens/home.dart';
 import 'package:shopping_app/screens/profil.dart';
-import 'package:shopping_app/screens/wish_list.dart';
+import 'package:shopping_app/screens/wishList.dart';
 
 class Navi extends StatefulWidget {
   final int initialIndex;
@@ -18,7 +19,12 @@ class Navi extends StatefulWidget {
 
 class _NaviState extends State<Navi> {
   int index = 0;
-  List screens = [const Home(), const Category(), const WishList(), const MainAuth()];
+  List screens = [
+    const Home(),
+    const Category(),
+    const WishListAuth(),
+    const ProFilAuth()
+  ];
 
   @override
   void initState() {

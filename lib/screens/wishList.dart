@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:shopping_app/constants/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shopping_app/data/wishListDTO.dart'; // WishListDTO 클래스 임포트
+import 'package:shopping_app/screens/productDetail.dart';
 
 class WishList extends StatefulWidget {
   const WishList({super.key});
@@ -35,7 +36,7 @@ class _WishListState extends State<WishList> {
 
       final response = await http.get(
         Uri.parse(
-            'http://192.168.0.33:8586/api/wishList?id=$memberId'), // memberId를 URL 파라미터로 포함
+            'http://ec2-54-206-169-132.ap-southeast-2.compute.amazonaws.com:8586/api/wishList?id=$memberId'), // memberId를 URL 파라미터로 포함
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -105,62 +106,74 @@ class _WishListState extends State<WishList> {
                 itemCount: wishList.length,
                 itemBuilder: (context, index) {
                   final product = wishList[index];
-                  return Card(
-                    margin: const EdgeInsets.symmetric(vertical: 10),
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Row(
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: product.imgId != null &&
-                                    product.imgId!.isNotEmpty
-                                ? Image.asset(
-                                    'assets/images/productList/${product.imgId}',
-                                    height: 100,
-                                    width: 100,
-                                    fit: BoxFit.cover,
-                                  )
-                                : Image.asset(
-                                    'assets/images/productList/noimg.gif',
-                                    height: 100,
-                                    width: 100,
-                                    fit: BoxFit.cover,
-                                  ),
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ProductDetailScreen(
+                            productId: product.productId!,
                           ),
-                          const SizedBox(width: 10),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  product.productName ?? '',
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                const SizedBox(height: 5),
-                                Text(
-                                  '₩ ${product.price ?? ''}원' ?? '',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: mains,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
+                        ),
+                      );
+                    },
+                    child: Card(
+                      margin: const EdgeInsets.symmetric(vertical: 10),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Row(
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: product.imgId != null &&
+                                      product.imgId!.isNotEmpty
+                                  ? Image.asset(
+                                      'assets/images/productList/${product.imgId}',
+                                      height: 100,
+                                      width: 100,
+                                      fit: BoxFit.cover,
+                                    )
+                                  : Image.asset(
+                                      'assets/images/productList/noimg.gif',
+                                      height: 100,
+                                      width: 100,
+                                      fit: BoxFit.cover,
+                                    ),
                             ),
-                          ),
-                          IconButton(
-                            icon: Icon(Icons.delete, color: mains),
-                            onPressed: () {
-                              setState(() {
-                                wishList.removeAt(index);
-                              });
-                            },
-                          ),
-                        ],
+                            const SizedBox(width: 10),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    product.productName ?? '',
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 5),
+                                  Text(
+                                    '₩ ${product.price ?? ''}원' ?? '',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: mains,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            IconButton(
+                              icon: Icon(Icons.delete, color: mains),
+                              onPressed: () {
+                                setState(() {
+                                  wishList.removeAt(index);
+                                });
+                              },
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   );

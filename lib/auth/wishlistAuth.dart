@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shopping_app/auth/auth.dart';
+import 'package:shopping_app/auth/loginAuth.dart';
 import 'package:shopping_app/screens/profil.dart';
+import 'package:shopping_app/screens/wishList.dart';
 
-class MainAuth extends StatefulWidget {
-  const MainAuth({super.key});
+class WishListAuth extends StatefulWidget {
+  const WishListAuth({super.key});
 
   @override
-  _MainAuthState createState() => _MainAuthState();
+  _WishListAuthState createState() => _WishListAuthState();
 }
 
-class _MainAuthState extends State<MainAuth> {
+class _WishListAuthState extends State<WishListAuth> {
   Future<bool> checkLoginStatus() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getBool('isLoggedIn') ?? false;
@@ -34,9 +35,9 @@ class _MainAuthState extends State<MainAuth> {
             body: Center(child: Text('Error: ${snapshot.error}')),
           );
         } else if (snapshot.hasData && snapshot.data == true) {
-          return const ProFil();
+          return const WishList();
         } else {
-          return const AuthPage();
+          return const LoginAuth();
         }
       },
     );
