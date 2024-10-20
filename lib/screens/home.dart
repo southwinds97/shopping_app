@@ -29,8 +29,7 @@ class _HomeState extends State<Home> {
   }
 
   Future<void> fetchProducts() async {
-    final response = await http.get(Uri.parse(
-        'http://ec2-54-206-169-132.ap-southeast-2.compute.amazonaws.com:8586/api/'));
+    final response = await http.get(Uri.parse('http://172.30.1.1:8586/api/'));
 
     if (response.statusCode == 200) {
       final decodedResponse = json.decode(utf8.decode(response.bodyBytes));

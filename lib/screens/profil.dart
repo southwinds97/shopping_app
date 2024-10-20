@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shopping_app/constants/colors.dart';
 import 'package:shopping_app/constants/navigation.dart';
+import 'package:shopping_app/screens/myInfo.dart';
 
 class ProFil extends StatefulWidget {
   // final VoidCallback show;
@@ -228,41 +229,50 @@ class _ProFilState extends State<ProFil> {
     );
   }
 
-  ListTile Info() {
-    return ListTile(
-      leading: Container(
-        width: 40,
-        height: 40,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: mains,
-          border: Border.all(color: mains, width: 2),
+  GestureDetector Info() {
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const MyInfo(),
+          ),
+        );
+      },
+      child: ListTile(
+        leading: Container(
+          width: 40,
+          height: 40,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: mains,
+            border: Border.all(color: mains, width: 2),
+          ),
+          child: const Icon(
+            Icons.info,
+            color: Colors.white,
+            size: 30,
+          ),
         ),
-        child: const Icon(
-          Icons.info,
-          color: Colors.white,
-          size: 30,
+        title: const Text(
+          '나의 정보',
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
         ),
-      ),
-      title: const Text(
-        '나의 정보',
-        style: TextStyle(
-          color: Colors.black,
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      trailing: Container(
-        width: 40,
-        height: 40,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(100),
-          color: Colors.grey[200],
-        ),
-        child: Icon(
-          Icons.arrow_forward_ios,
-          color: Colors.grey[600],
-          size: 30,
+        trailing: Container(
+          width: 40,
+          height: 40,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(100),
+            color: Colors.grey[200],
+          ),
+          child: Icon(
+            Icons.arrow_forward_ios,
+            color: Colors.grey[600],
+            size: 30,
+          ),
         ),
       ),
     );
