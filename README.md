@@ -29,22 +29,6 @@
 4. **장바구니**: 사용자가 선택한 상품을 장바구니에 추가하고, 장바구니 내용을 확인 및 수정.
 5. **결제**: 결제 게이트웨이를 연동하여 결제 기능 구현.
 
-## 디렉토리 구조
-
-```
-/lib
-    /auth
-         - auth.dart
-    /constants
-         - colors.dart
-         - navigation.dart
-    /screens
-         - home.dart
-         - product_detail_screen.dart
-         - login_page.dart
-    main.dart
-
-```
 
 ## 시작하기
 
