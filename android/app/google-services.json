@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "163680544048",
+    "firebase_url": "https://reactapp202408-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "reactapp202408",
+    "storage_bucket": "reactapp202408.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:163680544048:android:d8b088eb6aea0182a7d4f5",
+        "android_client_info": {
+          "package_name": "com.edu.shopping_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVHCjU4E567K2B-l18fkXsJKPaPJhPCPQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

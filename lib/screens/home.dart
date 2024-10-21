@@ -29,7 +29,7 @@ class _HomeState extends State<Home> {
   }
 
   Future<void> fetchProducts() async {
-    final response = await http.get(Uri.parse('http://172.30.1.1:8586/api/'));
+    final response = await http.get(Uri.parse('http://192.168.0.33:8586/api/'));
 
     if (response.statusCode == 200) {
       final decodedResponse = json.decode(utf8.decode(response.bodyBytes));
@@ -275,20 +275,31 @@ class _HomeState extends State<Home> {
                     ),
                   );
                 },
-                child: Container(
-                  alignment: Alignment.center,
-                  width: 90,
-                  height: 37,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: mains,
-                  ),
-                  child: const Text(
-                    '바로가기',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => ProductDetailScreen(
+                          productId: products[count].productId!,
+                        ),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    width: 90,
+                    height: 37,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: mains,
+                    ),
+                    child: const Text(
+                      '바로가기',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),

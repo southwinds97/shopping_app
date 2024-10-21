@@ -19,10 +19,11 @@ class ProductDetailScreen extends StatefulWidget {
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
   ProductDTO? product;
   bool isLoading = true;
-  int indexx = 0;
-  int indexxx = 0;
+  int index2 = 0;
+  int index3 = 0;
   List<String> getImages = []; // 이미지 리스트 초기화
   List<String> option = []; // 옵션 리스트 초기화
+  String img_id = 'default_img_id'; // img_id 변수 정의 및 초기화
 
   @override
   void initState() {
@@ -33,7 +34,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   Future<void> fetchProductDetail() async {
     try {
       final response = await http.post(
-        Uri.parse('http://172.30.1.1:8586/api/productDetail'),
+        Uri.parse('http://192.168.0.33:8586/api/productDetail'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -97,7 +98,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       }
 
       final response = await http.post(
-        Uri.parse('http://172.30.1.1:8586/api/wishListAdd'),
+        Uri.parse('http://192.168.0.33:8586/api/wishListAdd'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -135,9 +136,21 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // getImages 리스트의 길이를 최대 4개로 제한
-    List<String> limitedImages =
-        getImages.length > 4 ? getImages.sublist(0, 4) : getImages;
+    // getImages 리스트가 비어 있는 경우 기본 이미지를 추가
+    if (getImages.isEmpty) {
+      getImages.add('default_img_id'); // 기본 이미지 ID를 추가
+    }
+
+    // getImages 리스트의 길이가 4보다 작으면 나머지를 같은 이미지로 채움
+    if (getImages.length < 4) {
+      for (int i = getImages.length; i < 4; i++) {
+        getImages.add(getImages[0]);
+      }
+    }
+    // getImages 리스트의 길이를 4로 제한
+    List<String> limitedImages = getImages.length > 4
+        ? getImages.sublist(0, 4)
+        : List<String>.from(getImages);
 
     return Scaffold(
       bottomNavigationBar: Padding(
@@ -195,7 +208,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   SliverAppBar(
                     flexibleSpace: FlexibleSpaceBar(
                       background: Image.asset(
-                        'assets/images/productList/${getImages.isNotEmpty ? getImages[indexx] : 'noimg.gif'}',
+                        'assets/images/productList/${getImages.isNotEmpty ? getImages[index2] : 'noimg.gif'}',
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -306,7 +319,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                           SizedBox(
                             height: 70,
                             child: ListView.builder(
-                              itemCount: limitedImages.length,
+                              itemCount: 4, // itemCount를 4로 설정
                               scrollDirection: Axis.horizontal,
                               itemBuilder: (context, index) {
                                 return Padding(
@@ -315,7 +328,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                   child: GestureDetector(
                                     onTap: () {
                                       setState(() {
-                                        indexx = index;
+                                        index2 = index;
                                       });
                                     },
                                     child: Container(
@@ -324,14 +337,14 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                       decoration: BoxDecoration(
                                         border: Border.all(
                                           width: 2,
-                                          color: indexx == index
+                                          color: index2 == index
                                               ? mains
                                               : Colors.grey,
                                         ),
                                         borderRadius: BorderRadius.circular(10),
                                         image: DecorationImage(
                                           image: AssetImage(
-                                            'assets/images/productList/${getImages[index]}',
+                                            'assets/images/productList/${getImages[0]}',
                                           ),
                                           fit: BoxFit.cover,
                                         ),
@@ -363,7 +376,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                   child: GestureDetector(
                                     onTap: () {
                                       setState(() {
-                                        indexxx = index;
+                                        index2 = index;
                                       });
                                     },
                                     child: Container(
@@ -372,7 +385,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                       decoration: BoxDecoration(
                                         border: Border.all(
                                           width: 1.2,
-                                          color: indexxx == index
+                                          color: index3 == index
                                               ? mains
                                               : Colors.grey,
                                         ),
@@ -428,8 +441,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
 
   @override
   void deactivate() {
-    indexx = 0;
-    indexxx = 0;
+    index2 = 0;
+    index3 = 0;
     super.deactivate();
   }
 }

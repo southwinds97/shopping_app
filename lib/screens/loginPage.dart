@@ -40,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<void> loginUser() async {
     final response = await http.post(
-      Uri.parse('http://172.30.1.1:8586/api/login'), // Spring Boot 서버 URL
+      Uri.parse('http://192.168.0.33:8586/api/login'), // Spring Boot 서버 URL
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },

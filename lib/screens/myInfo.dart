@@ -33,7 +33,7 @@ class _MyInfoState extends State<MyInfo> {
   Future<void> fetchMemberInfo() async {
     try {
       final response = await http.post(
-        Uri.parse('http://172.30.1.1:8586/api/myInfo'),
+        Uri.parse('http://192.168.0.33:8586/api/myInfo'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
