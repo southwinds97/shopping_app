@@ -36,7 +36,7 @@ class _WishListState extends State<WishList> {
 
       final response = await http.get(
         Uri.parse(
-            'http://192.168.0.33:8586/api/wishList?id=$memberId'), // memberId를 URL 파라미터로 포함
+            'http://ec2-54-206-169-132.ap-southeast-2.compute.amazonaws.com:8586/api/wishList?id=$memberId'), // memberId를 URL 파라미터로 포함
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },

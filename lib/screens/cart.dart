@@ -36,7 +36,8 @@ class _CartState extends State<Cart> {
   Future<void> fetchCartList() async {
     try {
       final response = await http.post(
-        Uri.parse('http://192.168.0.33:8586/api/cartList'),
+        Uri.parse(
+            'http://ec2-54-206-169-132.ap-southeast-2.compute.amazonaws.com:8586/api/cartList'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },

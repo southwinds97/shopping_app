@@ -34,7 +34,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   Future<void> fetchProductDetail() async {
     try {
       final response = await http.post(
-        Uri.parse('http://192.168.0.33:8586/api/productDetail'),
+        Uri.parse(
+            'http://ec2-54-206-169-132.ap-southeast-2.compute.amazonaws.com:8586/api/productDetail'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -98,7 +99,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       }
 
       final response = await http.post(
-        Uri.parse('http://192.168.0.33:8586/api/wishListAdd'),
+        Uri.parse(
+            'http://ec2-54-206-169-132.ap-southeast-2.compute.amazonaws.com:8586/api/wishListAdd'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },

@@ -26,7 +26,7 @@ class _CategoryState extends State<Category> {
   Future<void> fetchCategories(String keyword) async {
     try {
       final response = await http.post(
-        Uri.parse('http://192.168.0.33:8586/api/category'),
+        Uri.parse('http://ec2-54-206-169-132.ap-southeast-2.compute.amazonaws.com:8586/api/category'),
         headers: {'Content-Type': 'application/json'},
         body: json.encode({'keyword': keyword}),
       );
