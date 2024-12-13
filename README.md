@@ -2,9 +2,12 @@
 
 이 문서는 Flutter를 이용하여 쇼핑몰 앱을 제작했습니다.
 
-![앱 스크린샷](images/01.jpg)
-![앱 스크린샷](images/02.jpg)
-![앱 스크린샷](images/03.jpg)
+
+<p align="center">
+  <img src="images/01.jpg" alt="앱 스크린샷" width="30%" />
+  <img src="images/02.jpg" alt="앱 스크린샷" width="30%" />
+  <img src="images/03.jpg" alt="앱 스크린샷" width="30%" />
+</p>
 
 ## 요구 사항
 
