@@ -2,6 +2,10 @@
 
 이 문서는 Flutter를 이용하여 쇼핑몰 앱을 제작했습니다.
 
+![앱 스크린샷](images/01.jpg)
+![앱 스크린샷](images/02.jpg)
+![앱 스크린샷](images/03.jpg)
+
 ## 요구 사항
 
 - Flutter SDK
